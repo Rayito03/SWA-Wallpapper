@@ -17,14 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build & Deploy
+      - name: Build & Deploy (static upload)
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_ISLAND_00990F00F }}
           action: upload
-          app_location: "/"      # carpeta donde está tu index.html
-          skip_app_build: true   # clave para evitar Oryx
-          # api_location: ""     # si no usás Functions, dejalo vacío
+          app_location: "/"        # cambia si tu sitio está en /web, /site, etc.
+          skip_app_build: true     # <- clave: evita Oryx y su “drama”
+          # api_location: ""       # déjalo vacío si no usás Functions
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
